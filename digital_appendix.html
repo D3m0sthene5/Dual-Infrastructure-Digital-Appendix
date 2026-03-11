@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Appendix — Dual Infrastructure: Eviction Court in Orange County, Florida</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+:root{--bg:#fff;--surface:#f8fafc;--border:#e2e8f0;--text:#1e293b;--dim:#64748b;--accent:#dc2626;--blue:#3b82f6;--amber:#f59e0b;--teal:#0d9488;--purple:#8b5cf6;--serif:'Source Serif 4',Georgia,serif;--mono:'IBM Plex Mono',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--serif);color:var(--text);background:var(--bg);line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:40px 24px}
+h1{font-size:2rem;font-weight:700;margin-bottom:8px;letter-spacing:-0.02em}
+h2{font-size:1.4rem;font-weight:700;margin:48px 0 8px;padding-top:24px;border-top:1px solid var(--border)}
+h3{font-size:1.1rem;font-weight:600;margin:24px 0 12px;color:var(--accent)}
+.subtitle{font-size:1rem;color:var(--dim);font-style:italic;margin-bottom:32px}
+.meta{font-family:var(--mono);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.chart-container{background:var(--surface);border:1px solid var(--border);padding:24px;margin:20px 0;border-radius:4px}
+.chart-title{font-family:var(--mono);font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+.chart-wrap{position:relative;width:100%;max-width:800px;margin:0 auto}
+canvas{max-width:100%!important}
+table{width:100%;border-collapse:collapse;font-size:0.85rem;margin:16px 0}
+th{text-align:left;padding:8px 12px;border-bottom:2px solid var(--text);font-family:var(--mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--dim)}
+th:not(:first-child){text-align:right}
+td{padding:7px 12px;border-bottom:1px solid var(--border)}
+td:not(:first-child){text-align:right;font-family:var(--mono);font-size:0.8rem}
+tr:nth-child(even){background:var(--surface)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:20px 0}
+.stat-card{background:var(--surface);border-left:3px solid var(--accent);padding:16px 20px}
+.stat-val{font-family:var(--mono);font-size:1.8rem;font-weight:700;line-height:1.1}
+.stat-label{font-size:0.85rem;color:var(--dim);margin-top:4px}
+.stat-sub{font-family:var(--mono);font-size:0.7rem;color:var(--accent);margin-top:2px}
+.note{background:#fef3c7;border-left:3px solid var(--amber);padding:12px 16px;font-size:0.85rem;margin:16px 0;line-height:1.5}
+.caption{font-size:0.8rem;color:var(--dim);font-style:italic;margin-top:8px}
+.toc{margin:24px 0 48px}
+.toc a{color:var(--accent);text-decoration:none;font-size:0.95rem;display:block;padding:4px 0}
+.toc a:hover{text-decoration:underline}
+.fig-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:600}
+footer{margin-top:60px;padding-top:20px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.65rem;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+@media print{.container{max-width:100%;padding:20px}.chart-container{break-inside:avoid}h2{break-before:page}}
+@media(max-width:600px){.stat-grid{grid-template-columns:1fr 1fr}h1{font-size:1.5rem}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="meta">Digital Appendix · Orange County, Florida · 2024 Eviction Docket · N = 15,039</div>
+<h1>Dual Infrastructure</h1>
+<p class="subtitle">Corporate Landlords, Representation Asymmetry, and the Function of Eviction Court in Orange County, Florida</p>
+<p style="font-size:0.85rem;color:var(--dim);margin-bottom:32px;">University of Chicago &middot; Bachelor of Arts Thesis &middot; D.B.K.<br>Faculty Advisor: Dr. Evan Carver &middot; Instructor: Dr. Christopher Kindell</p>
+
+<div class="toc">
+<strong style="font-family:var(--mono);font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase">Contents</strong>
+<a href="#overview">Overview: The System at a Glance</a>
+<a href="#table1">Table 1: Filing Composition by Case Type and Landlord Type</a>
+<a href="#fig1">Figure 1: Outcome Distribution across All Filings</a>
+<a href="#fig2">Figure 2: Outcome Distribution by Landlord Type</a>
+<a href="#table2">Table 2: Cross-Tabulation of Landlord Type and Case Outcome</a>
+<a href="#representation">Representation Configurations</a>
+<a href="#fig3a">Figure 3A: Filing-to-Judgment Interval Distribution</a>
+<a href="#fig3b">Figure 3B: Filing-to-Writ-Posting Interval Distribution</a>
+<a href="#attorneys">Attorney Concentration</a>
+<a href="#repeat">Repeat Players: Plaintiff and Defendant Concentration</a>
+</div>
+
+<!-- OVERVIEW -->
+<h2 id="overview">Overview: The System at a Glance</h2>
+<div class="stat-grid">
+<div class="stat-card"><div class="stat-val">15,039</div><div class="stat-label">Total Filings</div><div class="stat-sub">Orange County, 2024</div></div>
+<div class="stat-card" style="border-color:var(--accent)"><div class="stat-val">88.0%</div><div class="stat-label">Corporate Plaintiffs</div><div class="stat-sub">13,230 of 15,039</div></div>
+<div class="stat-card" style="border-color:var(--blue)"><div class="stat-val">92.5%</div><div class="stat-label">Plaintiffs with Counsel</div><div class="stat-sub">vs. 1.5% of defendants</div></div>
+<div class="stat-card" style="border-color:var(--amber)"><div class="stat-val">52.6%</div><div class="stat-label">Writs Issued</div><div class="stat-sub">90.6% of issued writs posted</div></div>
+<div class="stat-card" style="border-color:var(--teal)"><div class="stat-val">50 days</div><div class="stat-label">Median Filing to Writ Posting</div><div class="stat-sub">IQR: 41–65 days</div></div>
+<div class="stat-card" style="border-color:var(--purple)"><div class="stat-val">35.4%</div><div class="stat-label">Docket Share: Top Attorney</div><div class="stat-sub">5,330 cases, 680 plaintiffs</div></div>
+</div>
+
+<div class="chart-container">
+<div class="chart-title">Monthly Eviction Filings, Orange County 2024</div>
+<div class="chart-wrap" style="height:280px"><canvas id="monthlyChart"></canvas></div>
+<p class="caption">Filings remained elevated throughout 2024, averaging 1,253 per month with peaks in January (1,476) and July (1,405).</p>
+</div>
+
+<!-- TABLE 1 -->
+<h2 id="table1">Table 1: Filing Composition by Case Type and Landlord Type</h2>
+<p class="fig-label">Table 1</p>
+<table>
+<thead><tr><th>Case Type</th><th>Corporate</th><th>Non-Corporate</th><th>Total</th><th>% of Docket</th></tr></thead>
+<tbody>
+<tr><td>CC – Residential Eviction</td><td>11,241</td><td>1,264</td><td>12,505</td><td>83.2%</td></tr>
+<tr><td>CC – Eviction Non-Monetary</td><td>1,788</td><td>506</td><td>2,294</td><td>15.3%</td></tr>
+<tr><td>CC – Non-Residential Eviction</td><td>193</td><td>38</td><td>231</td><td>1.5%</td></tr>
+<tr><td>CA – Eviction</td><td>8</td><td>1</td><td>9</td><td>0.06%</td></tr>
+<tr style="font-weight:700;border-top:2px solid var(--text)"><td>Total</td><td>13,230</td><td>1,809</td><td>15,039</td><td>100%</td></tr>
+</tbody>
+</table>
+<p class="caption">Corporate plaintiffs filed 88.0% of all cases. Residential eviction (nonpayment of rent) cases constituted the vast majority (83.2%) of the docket.</p>
+
+<!-- FIGURE 1 -->
+<h2 id="fig1">Figure 1: Outcome Distribution across All Filings</h2>
+<p class="fig-label">Figure 1</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:320px"><canvas id="outcomeAllChart"></canvas></div>
+<p class="caption">Among 14,764 cases with coded outcomes: 53.6% ended in eviction granted, 31.3% in dismissal or settlement, and 15.1% were coded as Unknown – Closed. The remaining 275 cases (1.8%) lacked a coded outcome.</p>
+</div>
+
+<!-- FIGURE 2 -->
+<h2 id="fig2">Figure 2: Outcome Distribution by Landlord Type</h2>
+<p class="fig-label">Figure 2</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:360px"><canvas id="outcomeByLandlordChart"></canvas></div>
+<p class="caption">Corporate plaintiffs dismissed or settled 34.0% of their cases, compared to 9.8% for non-corporate plaintiffs — a ratio of 3.5:1. Non-corporate plaintiffs had a higher share of opaque Unknown – Closed outcomes (32.2% vs. 12.9%).</p>
+</div>
+
+<!-- TABLE 2 -->
+<h2 id="table2">Table 2: Cross-Tabulation of Landlord Type and Case Outcome</h2>
+<p class="fig-label">Table 2</p>
+<table>
+<thead><tr><th>Outcome</th><th>Corporate (n)</th><th>Corporate (%)</th><th>Non-Corp (n)</th><th>Non-Corp (%)</th></tr></thead>
+<tbody>
+<tr><td>Eviction Granted</td><td>6,951</td><td>53.1%</td><td>969</td><td>58.0%</td></tr>
+<tr><td>Dismissed/Settled</td><td>4,454</td><td>34.0%</td><td>164</td><td>9.8%</td></tr>
+<tr><td>Unknown – Closed</td><td>1,687</td><td>12.9%</td><td>539</td><td>32.2%</td></tr>
+<tr style="font-weight:700;border-top:2px solid var(--text)"><td>Total (coded)</td><td>13,092</td><td>100%</td><td>1,672</td><td>100%</td></tr>
+</tbody>
+</table>
+<div class="note">
+<strong>Statistical test:</strong> &chi;&sup2; = 652.65, df = 2, p &lt; 0.0001. Cramer's V = 0.210 (moderate association). Odds ratio for dismissal/settlement: Corporate vs. Non-Corporate OR = 4.74 (95% CI: 4.02–5.59).
+</div>
+
+<!-- REPRESENTATION -->
+<h2 id="representation">Representation Configurations</h2>
+<p class="fig-label">Representation Analysis</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:300px"><canvas id="repConfigChart"></canvas></div>
+</div>
+
+<table>
+<thead><tr><th>Configuration</th><th>Count</th><th>% of Docket</th></tr></thead>
+<tbody>
+<tr><td>Plaintiff represented, Defendant unrepresented</td><td>13,694</td><td>91.1%</td></tr>
+<tr><td>Both represented</td><td>217</td><td>1.4%</td></tr>
+<tr><td>Neither represented</td><td>1,113</td><td>7.4%</td></tr>
+<tr><td>Defendant represented, Plaintiff unrepresented</td><td>15</td><td>0.1%</td></tr>
+</tbody>
+</table>
+
+<h3>Outcomes by Tenant Representation Status</h3>
+<div class="chart-container">
+<div class="chart-wrap" style="height:320px"><canvas id="outcomeByRepChart"></canvas></div>
+<p class="caption">Represented defendants had an eviction-grant rate of 44.0% versus 52.8% for unrepresented defendants (8.8 pp difference). &chi;&sup2; = 28.45, df = 2, p &lt; 0.001; Cramer's V = 0.044.</p>
+</div>
+
+<h3>Plaintiff Representation by Landlord Type</h3>
+<table>
+<thead><tr><th>Landlord Type</th><th>Represented</th><th>Unrepresented</th><th>Representation Rate</th></tr></thead>
+<tbody>
+<tr><td>Corporate</td><td>13,068</td><td>162</td><td>98.8%</td></tr>
+<tr><td>Non-Corporate</td><td>843</td><td>966</td><td>46.6%</td></tr>
+</tbody>
+</table>
+
+<!-- FIGURE 3A -->
+<h2 id="fig3a">Figure 3A: Distribution of Filing-to-Judgment Intervals</h2>
+<p class="fig-label">Figure 3A</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:320px"><canvas id="ftjChart"></canvas></div>
+<p class="caption">Median filing-to-judgment interval: 27 days (residential), 28 days (non-monetary). IQR: 20–40 days. The distribution peaks sharply in the 21–28 day range, reflecting the standard procedural timeline.</p>
+</div>
+
+<!-- FIGURE 3B -->
+<h2 id="fig3b">Figure 3B: Distribution of Filing-to-Writ-Posting Intervals</h2>
+<p class="fig-label">Figure 3B</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:320px"><canvas id="ftwChart"></canvas></div>
+<p class="caption">Median filing-to-writ-posting interval: 50 days (IQR: 41–65 days). 49.1% of posted writs were posted within 49 days (seven weeks) of filing. Minimum observed: 6 days.</p>
+</div>
+
+<h3>Writ of Possession Pipeline</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="stat-val">15,039</div><div class="stat-label">Total Filings</div></div>
+<div class="stat-card"><div class="stat-val">7,905</div><div class="stat-label">Writs Issued</div><div class="stat-sub">52.6% of all filings</div></div>
+<div class="stat-card"><div class="stat-val">7,165</div><div class="stat-label">Writs Posted</div><div class="stat-sub">90.6% of issued writs</div></div>
+</div>
+<div class="note">Of the 7,920 eviction-granted cases, 7,905 (99.8%) recorded a writ issuance. No dismissed/settled or unknown-closed cases recorded a writ. The writ process is functionally an automatic extension of the eviction-granted judgment.</div>
+
+<!-- ATTORNEYS -->
+<h2 id="attorneys">Attorney Concentration on the Plaintiff Side</h2>
+<p class="fig-label">Attorney Analysis</p>
+<div class="chart-container">
+<div class="chart-wrap" style="height:400px"><canvas id="attorneyChart"></canvas></div>
+</div>
+
+<table>
+<thead><tr><th>Rank</th><th>Attorney</th><th>Cases</th><th>% of Docket</th><th>Cumulative %</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>James Barron</td><td>5,330</td><td>35.4%</td><td>35.4%</td></tr>
+<tr><td>2</td><td>William McCabe</td><td>1,315</td><td>8.7%</td><td>44.2%</td></tr>
+<tr><td>3</td><td>Jay Swistak</td><td>1,050</td><td>7.0%</td><td>51.1%</td></tr>
+<tr><td>4</td><td>Elizabeth Rivera</td><td>902</td><td>6.0%</td><td>57.1%</td></tr>
+<tr><td>5</td><td>Jeffery Wilkins</td><td>720</td><td>4.8%</td><td>62.0%</td></tr>
+<tr><td>6</td><td>Kenneth Lowenhaupt</td><td>540</td><td>3.6%</td><td>65.5%</td></tr>
+<tr><td>7</td><td>Matthew Siegel</td><td>499</td><td>3.3%</td><td>68.9%</td></tr>
+<tr><td>8</td><td>Barry Johnson</td><td>269</td><td>1.8%</td><td>70.6%</td></tr>
+<tr><td>9</td><td>Mark Lippman</td><td>237</td><td>1.6%</td><td>72.2%</td></tr>
+<tr><td>10</td><td>Ryan McCain</td><td>157</td><td>1.0%</td><td>73.3%</td></tr>
+</tbody>
+</table>
+<p class="caption">Barron's 5,330 cases spanned 680 distinct plaintiff names. The top 5 attorneys collectively represented 1,322 distinct plaintiffs. 517 total distinct plaintiff attorneys appeared on the docket; median caseload: 1; 75th percentile: 2.</p>
+
+<!-- REPEAT PLAYERS -->
+<h2 id="repeat">Repeat Players: Plaintiff and Defendant Concentration</h2>
+<p class="fig-label">Repeat Player Analysis</p>
+
+<h3>Top 20 Filing Entities</h3>
+<div class="chart-container">
+<div class="chart-wrap" style="height:520px"><canvas id="plaintiffChart"></canvas></div>
+<p class="caption">Despite 3,987 distinct plaintiff names, the top 20 filers — all corporate — accounted for 1,490 cases (9.9%). Outcome heterogeneity was substantial: Caden 1989 TIC I (73 cases, 91.8% eviction-granted) vs. VR Northbridge Holdings (69 cases, 30.4% eviction-granted, 69.6% dismissed/settled).</p>
+</div>
+
+<h3>Repeat Defendants: Case Study</h3>
+<div style="background:var(--surface);border:1px solid var(--border);padding:24px;margin:20px 0;border-radius:4px">
+<div class="stat-grid" style="margin-bottom:16px">
+<div class="stat-card"><div class="stat-val" style="color:var(--accent)">12</div><div class="stat-label">Total Filings</div></div>
+<div class="stat-card"><div class="stat-val" style="color:#991b1b">9</div><div class="stat-label">Evictions Granted</div></div>
+<div class="stat-card"><div class="stat-val" style="color:var(--amber)">9</div><div class="stat-label">Distinct Plaintiffs</div></div>
+<div class="stat-card"><div class="stat-val" style="color:var(--dim)">0</div><div class="stat-label">Cases with Defense Counsel</div></div>
+</div>
+<p style="font-style:italic;color:var(--dim);font-size:0.9rem;border-left:3px solid var(--accent);padding-left:16px;margin-top:16px">Laura Helton: Between April and December 2024, filed against 12 times by 9 different corporate plaintiffs. Evicted 9 times, with 9 writs posted. Unrepresented in every case. The system processed one tenant repeatedly through the same institutional machinery without any of the structural interventions — representation, mediation, housing assistance — that might alter the trajectory.</p>
+</div>
+
+<table>
+<thead><tr><th>Defendant</th><th>Filings</th><th>Distinct Plaintiffs</th><th>Evictions Granted</th><th>Writs Posted</th><th>Defense Counsel</th></tr></thead>
+<tbody>
+<tr><td>Laura Helton</td><td>12</td><td>9</td><td>9</td><td>9</td><td>0</td></tr>
+<tr><td>Anexstacia Watson</td><td>9</td><td>9</td><td>9</td><td>9</td><td>0</td></tr>
+<tr><td>Michael Glover</td><td>9</td><td>9</td><td>9</td><td>9</td><td>0</td></tr>
+</tbody>
+</table>
+<p class="caption">The 10 most frequently occurring defendant names accounted for 79 cases, none of which listed defense counsel.</p>
+
+<footer>
+<span>Data: Orange County Clerk of Courts, 2024 &middot; N = 15,039 cases</span>
+<span>Thesis: Dual Infrastructure &middot; D.B.K. &middot; University of Chicago</span>
+</footer>
+</div>
+
+<script>
+const C = {accent:'#dc2626',blue:'#3b82f6',amber:'#f59e0b',teal:'#0d9488',purple:'#8b5cf6',dim:'#64748b',dark:'#1e293b',light:'#f1f5f9'};
+Chart.defaults.font.family = "'Source Serif 4', Georgia, serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#475569';
+
+// Monthly filings
+new Chart(document.getElementById('monthlyChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{label:'Filings',data:[1476,1291,1005,1120,1287,1222,1405,1342,1291,1295,1063,1242],backgroundColor:C.accent+'cc',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#e2e8f022'}},x:{grid:{display:false}}}}});
+
+// Outcome all
+new Chart(document.getElementById('outcomeAllChart'),{type:'doughnut',data:{labels:['Eviction Granted (53.6%)','Dismissed/Settled (31.3%)','Unknown – Closed (15.1%)'],datasets:[{data:[7920,4618,2226],backgroundColor:[C.accent,C.blue,C.dim],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{position:'bottom',labels:{padding:16,usePointStyle:true,font:{size:12}}}}}});
+
+// Outcome by landlord type
+new Chart(document.getElementById('outcomeByLandlordChart'),{type:'bar',data:{labels:['Eviction Granted','Dismissed/Settled','Unknown – Closed'],datasets:[{label:'Corporate',data:[53.1,34.0,12.9],backgroundColor:C.accent+'cc'},{label:'Non-Corporate',data:[58.0,9.8,32.2],backgroundColor:C.amber+'cc'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Percentage of Cases'},grid:{color:'#e2e8f022'}},x:{grid:{display:false}}}}});
+
+// Representation config
+new Chart(document.getElementById('repConfigChart'),{type:'bar',data:{labels:['Plaintiff rep,\nDefendant unrep','Both\nrepresented','Neither\nrepresented','Defendant rep,\nPlaintiff unrep'],datasets:[{data:[91.1,1.4,7.4,0.1],backgroundColor:[C.accent+'cc',C.blue+'cc',C.amber+'cc',C.teal+'cc'],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+'% of docket'}}},scales:{x:{beginAtZero:true,title:{display:true,text:'% of Docket'},grid:{color:'#e2e8f022'}},y:{grid:{display:false}}}}});
+
+// Outcome by rep status
+new Chart(document.getElementById('outcomeByRepChart'),{type:'bar',data:{labels:['Eviction Granted','Dismissed/Settled','Unknown – Closed'],datasets:[{label:'Represented (n=215)',data:[47.4,24.7,27.9],backgroundColor:C.teal+'cc'},{label:'Unrepresented (n=14,549)',data:[53.8,31.4,14.9],backgroundColor:C.dim+'cc'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'%'}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Percentage'},grid:{color:'#e2e8f022'}},x:{grid:{display:false}}}}});
+
+// FTJ histogram
+new Chart(document.getElementById('ftjChart'),{type:'bar',data:{labels:['0–7','7–14','14–21','21–28','28–35','35–42','42–49','49–56','56–63','63–70','70–77','77–84','84–91','91–98','98–105','105–112','112–119','119–126','126–133','133–140','140–147','147–154','154–161','161–168'],datasets:[{label:'Cases',data:[7,202,2136,2430,1509,780,474,364,280,183,132,122,96,81,76,36,51,37,24,29,31,28,21,15],backgroundColor:C.blue+'aa',borderRadius:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},annotation:{annotations:{median:{type:'line',xMin:3,xMax:3,borderColor:C.accent,borderWidth:2,borderDash:[5,3],label:{display:true,content:'Median: 27 days',position:'start',backgroundColor:C.accent,font:{size:10}}}}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Number of Cases'},grid:{color:'#e2e8f022'}},x:{title:{display:true,text:'Days from Filing to Judgment'},grid:{display:false},ticks:{maxRotation:45,font:{size:9}}}}}});
+
+// FTW histogram
+new Chart(document.getElementById('ftwChart'),{type:'bar',data:{labels:['0–7','7–14','14–21','21–28','28–35','35–42','42–49','49–56','56–63','63–70','70–77','77–84','84–91','91–98','98–105','105–112','112–119','119–126','126–133','133–140','140–147','147–154','154–161','161–168'],datasets:[{label:'Cases',data:[1,0,9,104,580,1276,1303,1079,718,556,329,294,154,138,105,72,77,67,44,27,32,19,34,17],backgroundColor:C.accent+'aa',borderRadius:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,title:{display:true,text:'Number of Cases'},grid:{color:'#e2e8f022'}},x:{title:{display:true,text:'Days from Filing to Writ Posting'},grid:{display:false},ticks:{maxRotation:45,font:{size:9}}}}}});
+
+// Attorney concentration
+new Chart(document.getElementById('attorneyChart'),{type:'bar',data:{labels:['Barron','McCabe','Swistak','Rivera','Wilkins','Lowenhaupt','Siegel','Johnson','Lippman','McCain'],datasets:[{label:'Cases',data:[5330,1315,1050,902,720,540,499,269,237,157],backgroundColor:function(ctx){return ctx.dataIndex<5?C.accent+'cc':C.dim+'88'},borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const pcts=[35.4,8.7,7.0,6.0,4.8,3.6,3.3,1.8,1.6,1.0];return ctx.raw.toLocaleString()+' cases ('+pcts[ctx.dataIndex]+'% of docket)'}}}},scales:{x:{beginAtZero:true,title:{display:true,text:'Number of Cases'},grid:{color:'#e2e8f022'}},y:{grid:{display:false}}}}});
+
+// Top plaintiffs
+new Chart(document.getElementById('plaintiffChart'),{type:'bar',data:{labels:['Southern Oaks','Harbor Beach','Orlando 442','Bella Vita','Wesley Apts','Aria Beach I','Caden 1989','Lorenzo East Mil','Blvd 2600','Ellery Lake Sherwood','Bellagio','VR Northbridge','Advenir Oaks','525 Avalon Park','PLK Harbortown','Indigo Winter Park','Palio Apts','KYOL LLC','Twelve Oaks','Azure Winter Park'],datasets:[{label:'Filings',data:[121,99,90,79,78,75,73,73,71,70,70,69,68,67,67,65,65,65,63,62],backgroundColor:function(ctx){return ctx.dataIndex<5?C.accent+'cc':ctx.dataIndex<10?C.accent+'66':C.dim+'66'},borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,title:{display:true,text:'Filings in 2024'},grid:{color:'#e2e8f022'}},y:{grid:{display:false},ticks:{font:{size:10}}}}}});
+</script>
+</body>
+</html>
